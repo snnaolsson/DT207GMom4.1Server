@@ -45,8 +45,8 @@ router.post("/login", async(req, res)=>{
     if(!username || !password){
         return res.status(400).json({error: "ivalid input, send username and password"});
     }
-    //check credentials
-    
+       //check credentials
+       
     //does user exist?
     const user = await User.findOne({username});
     if(!user){
@@ -57,7 +57,8 @@ router.post("/login", async(req, res)=>{
    if(!ifPasswordMatch){
     return res.status(401).json({error: 'incorrect username or password'});
 
-   }else{
+   }
+   else {
     const payload = {username: username};
     const token =jwt.sign(payload, process.env.JWT_SECRET_KEY, {expiresIn: '1h'});
     const response = {

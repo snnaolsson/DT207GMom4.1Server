@@ -60,7 +60,7 @@ userSchema.statics.login = async function(username, password){
         if (!user){
             throw new Error('Incorrect username or password');
         }
-        const ifPasswordMatch = await user.compare(password);
+        const ifPasswordMatch = await user.comparePassword(password);
         //incorrect
         if(!ifPasswordMatch){
             throw new Error('Invalid username or password');

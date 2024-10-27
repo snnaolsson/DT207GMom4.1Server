@@ -17,7 +17,13 @@ app.use("/users", autRoutes);
 
 //protected route
 app.get("/users/protected", authenticateToken, (req,res)=>{
-    res.json({message: 'skyddad route'});
+    
+    const protectedData = {
+        username: req.username.username,
+        privateInfo: "Detta är skyddad data bara synlig för dig"
+    };
+    res.json(protectedData);
+    
 });
 //validate token
 function authenticateToken(req, res, next){
